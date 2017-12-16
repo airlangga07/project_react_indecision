@@ -1,5 +1,3 @@
-"use strict";
-
 // const square = function (x)  {
 //   return x * x;
 // }
@@ -16,8 +14,6 @@
 // console.log(squareArrow(4));
 
 // for a single parameter, you can omit the ()
-var getFirstName = function getFirstName(fullName) {
-  return fullName.split(" ")[0];
-};
+const getFirstName = fullName => fullName.split(" ")[0];
 
 console.log(getFirstName("Mikael Airlangga"));
