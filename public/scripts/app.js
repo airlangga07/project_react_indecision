@@ -1,41 +1,84 @@
 'use strict';
 
-// arguments object - no longer bound with arrow functions
+console.log("App.js is running!");
 
-var add = function add(a, b) {
-  // arguments no longer accessible
-  // console.log(arguments);
-  return a + b;
+var app = {
+  title: 'Indecision App',
+  subTitle: 'My First React App',
+  options: ['One', 'Two']
 };
 
-console.log(add(56, 1));
+var template = React.createElement(
+  'div',
+  null,
+  React.createElement(
+    'h1',
+    null,
+    app.title
+  ),
+  app.subTitle && React.createElement(
+    'p',
+    null,
+    app.subTitle
+  ),
+  React.createElement(
+    'p',
+    null,
+    app.options.length > 0 ? "Here are your options" : "No Options"
+  ),
+  React.createElement(
+    'ol',
+    null,
+    React.createElement(
+      'li',
+      null,
+      'Item One'
+    ),
+    React.createElement(
+      'li',
+      null,
+      'Item Two'
+    )
+  )
+);
 
-// this keyword - no longer bound
-
-var user = {
-  name: 'Mikael',
-  cities: ['Singapore', 'Jakarta'],
-  printPlacesLived: function printPlacesLived() {
-    var _this = this;
-
-    return this.cities.map(function (city) {
-      return _this.name + ' has lived in ' + city;
-    });
-  }
+var count = 0;
+var addOne = function addOne() {
+  return console.log('addOne');
+};
+var minusOne = function minusOne() {
+  return console.log('minusOne');
+};
+var reset = function reset() {
+  return console.log('reset');
 };
 
-console.log(user.printPlacesLived());
+var templateTwo = React.createElement(
+  'div',
+  null,
+  React.createElement(
+    'h1',
+    null,
+    'Count: ',
+    count
+  ),
+  React.createElement(
+    'button',
+    { onClick: addOne },
+    '+1'
+  ),
+  React.createElement(
+    'button',
+    { onClick: minusOne },
+    '-1'
+  ),
+  React.createElement(
+    'button',
+    { onClick: reset },
+    'Reset'
+  )
+);
 
-var multiplier = {
-  numbers: [1, 2, 3, 4, 5],
-  multiplyBy: 1264,
-  multiply: function multiply() {
-    var _this2 = this;
+var appRoot = document.getElementById("app");
 
-    return this.numbers.map(function (num) {
-      return num * _this2.multiplyBy;
-    });
-  }
-};
-
-console.log(multiplier.multiply());
+ReactDOM.render(templateTwo, appRoot);
