@@ -6,8 +6,9 @@ var app = {
   title: 'Indecision App',
   subTitle: 'My First React App',
   options: ['One', 'Two']
-  // JSX (Javascript XML)
-};var template = React.createElement(
+};
+
+var template = React.createElement(
   'div',
   null,
   React.createElement(
