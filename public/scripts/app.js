@@ -1,23 +1,41 @@
-"use strict";
+'use strict';
 
-// const square = function (x)  {
-//   return x * x;
-// }
+// arguments object - no longer bound with arrow functions
 
-// const squareArrow = (x) => {
-//   return x * x;
-// }
-
-// more concise is available using arrow function
-// for one-liner and quickly evaluated, you can omit the {} and return;
-// const squareArrow = (x) => x * x;
-
-// console.log(square(4));
-// console.log(squareArrow(4));
-
-// for a single parameter, you can omit the ()
-var getFirstName = function getFirstName(fullName) {
-  return fullName.split(" ")[0];
+var add = function add(a, b) {
+  // arguments no longer accessible
+  // console.log(arguments);
+  return a + b;
 };
 
-console.log(getFirstName("Mikael Airlangga"));
+console.log(add(56, 1));
+
+// this keyword - no longer bound
+
+var user = {
+  name: 'Mikael',
+  cities: ['Singapore', 'Jakarta'],
+  printPlacesLived: function printPlacesLived() {
+    var _this = this;
+
+    return this.cities.map(function (city) {
+      return _this.name + ' has lived in ' + city;
+    });
+  }
+};
+
+console.log(user.printPlacesLived());
+
+var multiplier = {
+  numbers: [1, 2, 3, 4, 5],
+  multiplyBy: 1264,
+  multiply: function multiply() {
+    var _this2 = this;
+
+    return this.numbers.map(function (num) {
+      return num * _this2.multiplyBy;
+    });
+  }
+};
+
+console.log(multiplier.multiply());
