@@ -23,6 +23,8 @@ const onRemoveAll = () => {
   renderForm();
 }
 
+const listItem = () => app.options.map(item => <li key={item}>{item}</li>);
+
 const appRoot = document.getElementById('app');
 
 const renderForm = () => {
@@ -32,15 +34,14 @@ const renderForm = () => {
       {app.subTitle && <p>{app.subTitle}</p>}
       <p>{app.options.length > 0 ? "Here are your options" : "No Options"}</p>
       <p>{app.options.length}</p>
+      <button onClick={onRemoveAll}>Remove All</button>
       <ol>
-        <li>Item One</li>
-        <li>Item Two</li>
+        {listItem()}
       </ol>
       <form onSubmit={onFormSubmit}>
         <input type="text" name="option" />
         <button>Add Option</button>
       </form>
-      <button onClick={onRemoveAll}>Remove All</button>
     </div>
   );
 

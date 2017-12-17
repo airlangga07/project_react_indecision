@@ -25,6 +25,16 @@ var onRemoveAll = function onRemoveAll() {
   renderForm();
 };
 
+var listItem = function listItem() {
+  return app.options.map(function (item) {
+    return React.createElement(
+      'li',
+      { key: item },
+      item
+    );
+  });
+};
+
 var appRoot = document.getElementById('app');
 
 var renderForm = function renderForm() {
@@ -52,18 +62,14 @@ var renderForm = function renderForm() {
       app.options.length
     ),
     React.createElement(
+      'button',
+      { onClick: onRemoveAll },
+      'Remove All'
+    ),
+    React.createElement(
       'ol',
       null,
-      React.createElement(
-        'li',
-        null,
-        'Item One'
-      ),
-      React.createElement(
-        'li',
-        null,
-        'Item Two'
-      )
+      listItem()
     ),
     React.createElement(
       'form',
@@ -74,11 +80,6 @@ var renderForm = function renderForm() {
         null,
         'Add Option'
       )
-    ),
-    React.createElement(
-      'button',
-      { onClick: onRemoveAll },
-      'Remove All'
     )
   );
 
