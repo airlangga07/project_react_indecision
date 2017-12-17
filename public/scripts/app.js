@@ -5,90 +5,84 @@ console.log("App.js is running!");
 var app = {
   title: 'Indecision App',
   subTitle: 'My First React App',
-  options: ['One', 'Two']
+  options: []
 };
 
-var template = React.createElement(
-  'div',
-  null,
-  React.createElement(
-    'h1',
-    null,
-    app.title
-  ),
-  app.subTitle && React.createElement(
-    'p',
-    null,
-    app.subTitle
-  ),
-  React.createElement(
-    'p',
-    null,
-    app.options.length > 0 ? "Here are your options" : "No Options"
-  ),
-  React.createElement(
-    'ol',
-    null,
-    React.createElement(
-      'li',
-      null,
-      'Item One'
-    ),
-    React.createElement(
-      'li',
-      null,
-      'Item Two'
-    )
-  )
-);
+var onFormSubmit = function onFormSubmit(e) {
+  e.preventDefault();
 
-var count = 0;
+  var option = e.target.elements.option.value;
 
-var addOne = function addOne() {
-  count++;
-  renderCounterApp();
+  if (option) {
+    app.options.push(option);
+    e.target.elements.option.value = '';
+    renderForm();
+  }
 };
 
-var minusOne = function minusOne() {
-  count = count !== 0 ? count - 1 : 0;
-  renderCounterApp();
+var onRemoveAll = function onRemoveAll() {
+  app.options = [];
+  renderForm();
 };
 
-var reset = function reset() {
-  count = 0;
-  renderCounterApp();
-};
+var appRoot = document.getElementById('app');
 
-var appRoot = document.getElementById("app");
-
-var renderCounterApp = function renderCounterApp() {
-  var templateTwo = React.createElement(
+var renderForm = function renderForm() {
+  var template = React.createElement(
     'div',
     null,
     React.createElement(
       'h1',
       null,
-      'Count: ',
-      count
+      app.title
+    ),
+    app.subTitle && React.createElement(
+      'p',
+      null,
+      app.subTitle
+    ),
+    React.createElement(
+      'p',
+      null,
+      app.options.length > 0 ? "Here are your options" : "No Options"
+    ),
+    React.createElement(
+      'p',
+      null,
+      app.options.length
+    ),
+    React.createElement(
+      'ol',
+      null,
+      React.createElement(
+        'li',
+        null,
+        'Item One'
+      ),
+      React.createElement(
+        'li',
+        null,
+        'Item Two'
+      )
+    ),
+    React.createElement(
+      'form',
+      { onSubmit: onFormSubmit },
+      React.createElement('input', { type: 'text', name: 'option' }),
+      React.createElement(
+        'button',
+        null,
+        'Add Option'
+      )
     ),
     React.createElement(
       'button',
-      { onClick: addOne },
-      '+1'
-    ),
-    React.createElement(
-      'button',
-      { onClick: minusOne },
-      '-1'
-    ),
-    React.createElement(
-      'button',
-      { onClick: reset },
-      'Reset'
+      { onClick: onRemoveAll },
+      'Remove All'
     )
   );
 
-  ReactDOM.render(templateTwo, appRoot);
+  ReactDOM.render(template, appRoot);
 };
 
-renderCounterApp();
+renderForm();

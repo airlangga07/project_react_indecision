@@ -1,53 +1,50 @@
 console.log("App.js is running!")
 
-const app = {
+let app = {
   title: 'Indecision App',
   subTitle: 'My First React App',
-  options: ['One', 'Two']
+  options: []
 }
 
-const template = (
-  <div>
-    <h1>{app.title}</h1>
-    {app.subTitle && <p>{app.subTitle}</p>}
-    <p>{app.options.length > 0 ? "Here are your options" : "No Options"}</p>
-    <ol>
-      <li>Item One</li>
-      <li>Item Two</li>
-    </ol>
-  </div>
-);
+const onFormSubmit = (e)  => {
+  e.preventDefault();
 
-let count = 0;
+  const option = e.target.elements.option.value;
 
-const addOne = () => {
-  count++;
-  renderCounterApp();
-} 
-
-const minusOne = () => {
-  count = (count !== 0) ? count - 1 : 0;
-  renderCounterApp();
+  if (option) {
+    app.options.push(option);
+    e.target.elements.option.value = '';
+    renderForm();
+  }
 }
 
-const reset = () => {
-  count = 0;
-  renderCounterApp();
+const onRemoveAll = () => {
+  app.options = [];
+  renderForm();
 }
 
-const appRoot = document.getElementById("app");
+const appRoot = document.getElementById('app');
 
-const renderCounterApp = () => {
-  const templateTwo = (
+const renderForm = () => {
+  const template = (
     <div>
-      <h1>Count: {count}</h1>
-      <button onClick={addOne}>+1</button>
-      <button onClick={minusOne}>-1</button>
-      <button onClick={reset}>Reset</button>
+      <h1>{app.title}</h1>
+      {app.subTitle && <p>{app.subTitle}</p>}
+      <p>{app.options.length > 0 ? "Here are your options" : "No Options"}</p>
+      <p>{app.options.length}</p>
+      <ol>
+        <li>Item One</li>
+        <li>Item Two</li>
+      </ol>
+      <form onSubmit={onFormSubmit}>
+        <input type="text" name="option" />
+        <button>Add Option</button>
+      </form>
+      <button onClick={onRemoveAll}>Remove All</button>
     </div>
   );
 
-  ReactDOM.render(templateTwo, appRoot);
-};
+  ReactDOM.render(template, appRoot);
+}
 
-renderCounterApp();
+renderForm();
