@@ -35,6 +35,12 @@ var listItem = function listItem() {
   });
 };
 
+var onMakeDecision = function onMakeDecision() {
+  var randomNum = Math.floor(Math.random() * app.options.length);
+  var option = app.options[randomNum];
+  alert(option);
+};
+
 var appRoot = document.getElementById('app');
 
 var renderForm = function renderForm() {
@@ -57,9 +63,9 @@ var renderForm = function renderForm() {
       app.options.length > 0 ? "Here are your options" : "No Options"
     ),
     React.createElement(
-      'p',
-      null,
-      app.options.length
+      'button',
+      { disabled: app.options.length === 0, onClick: onMakeDecision },
+      'What should I do?'
     ),
     React.createElement(
       'button',
