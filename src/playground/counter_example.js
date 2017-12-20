@@ -1,53 +1,94 @@
-console.log("App.js is running!")
+class Counter extends React.Component {
+  constructor(props) {
+    super(props);
 
-const app = {
-  title: 'Indecision App',
-  subTitle: 'My First React App',
-  options: ['One', 'Two']
+    this.state = { count: 0 };
+    this.handleAddOne = this.handleAddOne.bind(this);
+    this.handleMinusOne = this.handleMinusOne.bind(this);
+    this.handleReset = this.handleReset.bind(this);
+  }
+
+  handleAddOne() {
+    this.setState(prevState => {
+      return { count: prevState.count + 1 };
+    })
+  }
+
+  handleMinusOne() {
+    this.setState(prevState => {
+      return { count: prevState.count - 1 };
+    })
+  }
+
+  handleReset() {
+    this.setState({ count: 0 });
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Count: {this.state.count}</h1>
+        <button onClick={this.handleAddOne}>+1</button>
+        <button onClick={this.handleMinusOne}>-1</button>
+        <button onClick={this.handleReset}>reset</button>
+      </div>
+    )
+  }
 }
 
-const template = (
-  <div>
-    <h1>{app.title}</h1>
-    {app.subTitle && <p>{app.subTitle}</p>}
-    <p>{app.options.length > 0 ? "Here are your options" : "No Options"}</p>
-    <ol>
-      <li>Item One</li>
-      <li>Item Two</li>
-    </ol>
-  </div>
-);
+ReactDOM.render(<Counter />, document.getElementById('app'));
 
-let count = 0;
+// console.log("App.js is running!")
 
-const addOne = () => {
-  count++;
-  renderCounterApp();
-} 
+// const app = {
+//   title: 'Indecision App',
+//   subTitle: 'My First React App',
+//   options: ['One', 'Two']
+// }
 
-const minusOne = () => {
-  count = (count !== 0) ? count - 1 : 0;
-  renderCounterApp();
-}
+// const template = (
+//   <div>
+//     <h1>{app.title}</h1>
+//     {app.subTitle && <p>{app.subTitle}</p>}
+//     <p>{app.options.length > 0 ? "Here are your options" : "No Options"}</p>
+//     <ol>
+//       <li>Item One</li>
+//       <li>Item Two</li>
+//     </ol>
+//   </div>
+// );
 
-const reset = () => {
-  count = 0;
-  renderCounterApp();
-}
+// let count = 0;
 
-const appRoot = document.getElementById("app");
+// const addOne = () => {
+//   count++;
+//   renderCounterApp();
+// } 
 
-const renderCounterApp = () => {
-  const templateTwo = (
-    <div>
-      <h1>Count: {count}</h1>
-      <button onClick={addOne}>+1</button>
-      <button onClick={minusOne}>-1</button>
-      <button onClick={reset}>Reset</button>
-    </div>
-  );
+// const minusOne = () => {
+//   count = (count !== 0) ? count - 1 : 0;
+//   renderCounterApp();
+// }
 
-  ReactDOM.render(templateTwo, appRoot);
-};
+// const reset = () => {
+//   count = 0;
+//   renderCounterApp();
+// }
 
-renderCounterApp();
+// const appRoot = document.getElementById("app");
+
+// const renderCounterApp = () => {
+//   const templateTwo = (
+//     <div>
+//       <h1>Count: {count}</h1>
+//       <button onClick={addOne}>+1</button>
+//       <button onClick={minusOne}>-1</button>
+//       <button onClick={reset}>Reset</button>
+//     </div>
+//   );
+
+//   ReactDOM.render(templateTwo, appRoot);
+// };
+
+// renderCounterApp();
+
