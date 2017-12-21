@@ -1,25 +1,50 @@
-console.log('app is running');
+class Visibility extends React.Component {
+  constructor(props) {
+    super(props);
 
-const appRoot = document.getElementById('app');
+    this.state = { toggleStatus: false };
+    this.toggleStatus = this.toggleStatus.bind(this);
+  }
 
-let toggleStatus = false;
+  toggleStatus() {
+    this.setState((prevState) => {
+      return { toggleStatus: !prevState.toggleStatus }
+    });
+  }
 
-const toggleButton = () => {
-  toggleStatus = (toggleStatus) ? false : true;
-  // toggleStatus = !toggleStatus; <-- this should be used!
-  render();
-}
+  render() {
+    return (
+      <div>
+        <h1>Visibility Toggle</h1>
+        <button onClick={this.toggleStatus}>{ this.state.toggleStatus ? 'Show Details' : 'Hide Details'}</button>
+        {this.state.toggleStatus && <p>Hello! This is the secret message!</p>}
+      </div>
+    )
+  }
+};
 
-const render = () => {
-  const template = (
-    <div>
-      <h1>Visibility Toggle</h1>
-      <button onClick={toggleButton}>{toggleStatus ? 'Hide Details' : 'Show Details'}</button>
-      {toggleStatus && <p>Hello! this is the secret message!</p>}
-    </div>
-  )
+ReactDOM.render(<Visibility />, document.getElementById('app'));
 
-  ReactDOM.render(template, appRoot);
-}
+// const appRoot = document.getElementById('app');
 
-render();
+// let toggleStatus = false;
+
+// const toggleButton = () => {
+//   toggleStatus = (toggleStatus) ? false : true;
+//   // toggleStatus = !toggleStatus; <-- this should be used!
+//   render();
+// }
+
+// const render = () => {
+//   const template = (
+//     <div>
+//       <h1>Visibility Toggle</h1>
+//       <button onClick={toggleButton}>{toggleStatus ? 'Hide Details' : 'Show Details'}</button>
+//       {toggleStatus && <p>Hello! this is the secret message!</p>}
+//     </div>
+//   )
+
+//   ReactDOM.render(template, appRoot);
+// }
+
+// render();
