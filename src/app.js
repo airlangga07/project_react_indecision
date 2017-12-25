@@ -1,10 +1,13 @@
-// import subtract, { square, add } from './utils';
-// console.log('app.js is running!');
-// console.log(square(4));
-// console.log(add(2, 3));
-// console.log(subtract(5, 4));
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
-import isSenior, { isAdult, canDrink } from './person';
-console.log(isAdult(17));
-console.log(canDrink(22));
-console.log(isSenior(66));
+// class IndecisionApp extends Components {
+//   render() {
+//     return (
+//       <div>Hello!</div>
+//     )
+//   }
+// }
+const template = React.createElement('p', {}, 'testing 123');
+
+ReactDOM.render(template, document.getElementById('app'));
