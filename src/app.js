@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-// class IndecisionApp extends Components {
-//   render() {
-//     return (
-//       <div>Hello!</div>
-//     )
-//   }
-// }
-const template = React.createElement('p', {}, 'testing 123');
+class IndecisionApp extends Component {
+  render() {
+    return (
+      <div>Hello!</div>
+    )
+  }
+}
 
-ReactDOM.render(template, document.getElementById('app'));
+ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
