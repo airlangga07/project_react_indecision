@@ -30,7 +30,7 @@ export default class AddOption extends Component {
         {this.state.error && <p>{this.state.error}</p>}
         <form onSubmit={this.handleSubmit}>
           <input type="text" name="option" />
-          <button>Submit</button>
+          <button className="button">Submit</button>
         </form>
       </div>
     );
